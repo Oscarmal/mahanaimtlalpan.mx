@@ -1,0 +1,1 @@
+<div id="pie">Iglesia de Jesucristo Mahanaim Tlalpan <br /> Ministerios Palabra Miel <br /> [@Anio]</div>

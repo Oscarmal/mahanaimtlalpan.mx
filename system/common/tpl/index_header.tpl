@@ -1,8 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title>[@Titulo]</title>
-    <link rel="stylesheet" type="text/css" href="[@CSS]" />
     <link href="[@CSS_estructura]" rel="stylesheet" type="text/css" />
     <link href="[@CSS_estilos]" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="[@Javascript_IMG]"></script>
@@ -14,12 +11,15 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td valign="top" width="1"><img src="[@IMG]Logo_Tlalpan.jpg" style="max-width=200; max-height=67;"/></td>
-            <td colspan="2" align="right" valign="middle" style="border-bottom:#FFCC66 solid 5px;">
+            <td colspan="2" align="right" valign="middle">
             <span class="titulo1">Iglesia de Jesucristo Mahanaim Tlalpan</span><span class="titulo2">&nbsp;    <br />
             Ministerios Palabra Miel&nbsp;<br />
             </span><span class="titulo3"><br />
             Sistema de Control Administrativo</span><span class="titulo2">&nbsp;</span></td>
-          <td width="67" align="right" valign="top" style="border-bottom:#FFCC66 solid 5px;"><img src="[@IMG]PalabraMiel_azul_low.jpg" style="max-width=66; max-height=70;"/></td>
+          <td width="67" align="right" valign="top" ><img src="[@IMG]PalabraMiel_azul_low.jpg" style="max-width=66; max-height=70;"/></td>
+          </tr>
+          <tr>
+          <td colspan="4" style="border-bottom:#FFCC66 solid 5px;"></td>
           </tr>
           <tr>
             <td height="19" colspan="2" valign="middle" class="txt_barra">&nbsp;[@UsuarioUsu] | [@UsuarioNom]</td>
@@ -32,15 +32,7 @@
             <td></td>
           </tr>
         </table>
-    </div>
-    <div id="pagina">
         <div id="menu">[@Menu]</div>
-        <div id="barra_ruta">[@BarraRuta]</div>
-        <div id="menuizq">[@MenuIzq]</div>
-        <div id="contenido">
-            [@Contenido]
-        </div>
     </div>
-    <div id="pie">Iglesia de Jesucristo Mahanaim Tlalpan <br /> Ministerios Palabra Miel <br /> [@Anio]</div>
 </body>
-</html>
+</html><span id="
