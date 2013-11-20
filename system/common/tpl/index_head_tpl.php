@@ -1,9 +1,13 @@
 <?php
-##Menus
+##Menu general
 $menu = new Template($PathTPL.'index_menu.tpl');
 $menu->set("MENU", $PathCSS."menu/");
+$menu->set("INICIO", $RaizUrl."modules/");
+$menu->set("CONGREGACION", "#");
+$menu->set("INVENTARIO", "#");
+$menu->set("CONTABILIDAD", "#");
+$menu->set("ADMIN", $RaizUrl."modules/admin/");
 $menu->set("SALIR", $RaizUrl."?er=1");
-$menuizq = new Template($PathTPL.'index_menuizq.tpl');
 ##Header
 $header = new Template($PathTPL."index_header.tpl");
 $header->set("CSS_estructura", $PathCSS."contenido.css");

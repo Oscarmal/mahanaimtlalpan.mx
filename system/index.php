@@ -27,10 +27,10 @@ $content->set("FOOTER", $footer->output());
 $content->set("MENSAJE", $Msj);
 ##Index [framset]
 $html = new Template($PathTPL.'index_frame.tpl');
-$html->set("Titulo", "Sistema");
+$html->set("TITULO", "Sistema");
 $html->set("HEADER", $header->output());
 $html->set("CONTENT", $content->output());
 $html=$html->output();
 echo $html;
 ?>
-<a href="tmp/">Testing</a>
+<a href="modules/">Testing</a>
