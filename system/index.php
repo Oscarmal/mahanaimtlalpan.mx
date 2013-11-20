@@ -1,29 +1,30 @@
 <?php include("common/header.php");?>
 <?php 
-##Menus
-$menu = new Template($PathTPL.'index_menu.tpl');
-$menu->set("menu", $PathCSS."menu/");
-$menuizq = new Template($PathTPL.'index_menuizq.tpl');
-##Header
-$header = new Template($PathTPL."index_header.tpl");
-$header->set("CSS_estructura", $PathCSS."contenido.css");
-$header->set("CSS_estilos", $PathCSS."estilos.css");
-$header->set("Javascript_IMG", $PathJS."img.js");
-$header->set("Javascript", $PathJS."o3m_funciones.js");
-$header->set("jQuery", $PathJS."jquery/jquery-1.9.1.min.js");
-$header->set("IMG", $PathIMG);
-$header->set("FechaHoy", fec_larga_hoy());
-$header->set("UsuarioNom", $UsuNom);
-$header->set("UsuarioUsu", $UsuUsu);
-$header->set("Menu", "");
-#Footer
-$footer = new Template($PathTPL.'index_footer.tpl');
-$footer->set("Anio", date('Y'));
+#if($in['er']){session_destroy('maha_tlalpan'); }
+if($ins['user'] || $ins['pass']){
+	$row=SQLQuery("select * from sis_usuarios where 1 and usu_usuario='$ins[user]' and usu_clave='$ins[pass]'",1);
+	if(!$row){$Msj="Sin acceso - Verifique su suario y/o contraseña";}
+	else{
+		session_name('maha_tlalpan');
+		session_start();
+		$_SESSION['usu_id']=$row['id_usuario'];
+		$_SESSION['usu_usuario']=$row['usu_usuario'];
+		$_SESSION['usu_nombre']=$row['usu_usuario'];
+		$_SESSION['usu_nivel']=$row['id_acceso'];
+		header("location: tmp/index.php");
+	}
+}
+#############
+## Vista
+#############
+##Header & Footer
+include($PathTPL.'index_head_tpl.php');
 ##Content
-$content = new Template($PathTPL.'index_content.tpl');
-$content->set("MenuIzq", "MenuIzq <br/>".$menuizq->output());
-$content->set("Contenido", "Contenido<br/>".$sql);
+$header->set("Menu", "");
+$content = new Template($PathTPL.'index_login.tpl');
+$content->set("FORM_ACTION", $PHP_SELF);
 $content->set("FOOTER", $footer->output());
+$content->set("MENSAJE", $Msj);
 ##Index [framset]
 $html = new Template($PathTPL.'index_frame.tpl');
 $html->set("Titulo", "Sistema");

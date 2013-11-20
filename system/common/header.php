@@ -17,16 +17,16 @@ parse_form_sanitizer($_GET, $_POST);
 parse_form($_GET, $_POST);
 
 ##Variables de usuario
-$UsuID=$_SESSION['usu_id'];
-$UsuUsu=$_SESSION['usu_usuario'];
-$UsuNom=$_SESSION['usu_nombre'];
-$UsuNiv=$_SESSION['usu_nivel'];		
+$UsuarioID=$_SESSION['usu_id'];
+$UsuarioUs=$_SESSION['usu_usuario'];
+$UsuarioNom=$_SESSION['usu_nombre'];
+$UsuarioNiv=$_SESSION['usu_nivel'];		
 
-/*
+
 ##Validación de autentificación
-if (!isset($UsuarioID)) { header("Location: ".$RaizUrl."index.php?er=1"); exit; }
+#if (!isset($UsuarioID)) { header("Location: ".$RaizUrl."index.php?er=1"); exit; }
 if(empty($UsuarioUs) && empty($UsuarioNom)){$UsuarioUs="Usuario"; $UsuarioNom="Nombre de Usuario";}
-
+/*
 #Log Txt
 LogTxt($SiteFolder,$UsuarioID,$UsuarioNom,$UsuarioUs,$UsuarioNiv,$RaizLoc);
 

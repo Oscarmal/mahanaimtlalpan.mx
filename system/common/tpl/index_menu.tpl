@@ -1,4 +1,4 @@
-<link href="[@menu]menu.css" rel="stylesheet" type="text/css" />
+<link href="[@MENU]menu.css" rel="stylesheet" type="text/css" />
 <div class="container">
     <ul id="nav">
         <li><a href="#">Inicio</a></li>
@@ -35,7 +35,7 @@
         <li><a href="#">Menu 4</a></li>
         <li><a href="#">Menu 5</a></li>
         <li><a href="#">Menu 6</a></li>
-        <li><a href="#">Back</a></li>
+        <li><a href="[@SALIR]">Salir</a></li>
         <div id="lavalamp"></div>
     </ul>
 </div>
