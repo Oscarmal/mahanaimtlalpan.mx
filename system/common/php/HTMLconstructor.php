@@ -8,10 +8,11 @@
 * @params $menuIzqTpl => Nombre de la plantilla TPL para el menu izquierdo
 */ 
 function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $contentTPL='index_content.tpl', $menuIzqTpl='index_menuizq.tpl'){
+	$contentTPL=(!$contentTPL)?'index_content.tpl':$contentTPL;	
 #############
 ## Vista
 #############
-	global $PathTPL, $PathCSS, $PathJS, $PathIMG, $RaizUrl, $UsuarioNom, $UsuarioUsu, $SiteTitle;
+	global $PathPHP, $PathTPL, $PathCSS, $PathJS, $PathIMG, $RaizUrl, $UsuarioNom, $UsuarioUsu, $SiteTitle;
 	####### Impresión de Página #######
 	##Header & Footer
 	$menuTpl = 'index_menu.tpl';
@@ -45,7 +46,9 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$contentTpl = $contentTPL;
 	$menuizq = new Template($PathTPL.$menuIzqTpl);
 	$content = new Template($PathTPL.$contentTpl);
-	$content->set("MenuIzq", $menuizq->output());
+	$content->set("IMG", $PathIMG);
+	if(!$menuIzqTpl){$content->set("MenuIzq", '');}else{$content->set("MenuIzq", $menuizq->output());}
+	#$content->set("MenuIzq", $menuizq->output());
 	$content->set("Contenido", $contentHTML);
 	$content->set("FOOTER", $footer->output());		
 	if($contentVars){
