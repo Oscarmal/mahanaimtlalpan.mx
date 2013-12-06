@@ -5,7 +5,7 @@
     <div id="pagina">
         <div id="contenido" align="center" valign="middle">
             <table border="0" cellspan="3" cellpading="0">
-            	<form name="f_login" method="_POST" action="[@FORM_ACTION]">
+            	<form name="f_login" method="_POST" action="[@FORM_ACTION_LOGIN]">
             	<tr>
             		<td colspan="2">[@MENSAJE]</td>
             	</tr>

@@ -1,8 +1,8 @@
 <?php
 ##Content
-$content = new Template($PathTPL.'index_content.tpl');
-$menuizq = new Template($PathTPL.'index_menuizq.tpl');
+$menuizq = new Template($PathTPL.$menuIzqTpl);
+$content = new Template($PathTPL.$contentTpl);
 $content->set("MenuIzq", "MenuIzq <br/>".$menuizq->output());
-$content->set("Contenido", "Inicio<br/>".$sql);
+$content->set("Contenido", $contentHTML);
 $content->set("FOOTER", $footer->output());
 ?>
