@@ -9,12 +9,13 @@ load_vars($cfgFile);
 require($RaizLoc.$cfg['dbi_conex']); 
 require($RaizLoc.$cfg['php_functions']); 
 include($RaizLoc.$cfg['php_template']);
+$PathPHP=$RaizLoc.$cfg['path_php'];
 $PathTPL=$RaizLoc.$cfg['path_tpl'];
 $PathCSS=$RaizUrl.$cfg['path_css'];
 $PathJS=$RaizUrl.$cfg['path_js'];
 $PathIMG=$RaizUrl.$cfg['path_img'];
 $SiteTitle=$cfg['site_title'];
-require_once($PathTPL.'HTMLconstructor.php'); 
+require_once($PathPHP.'HTMLconstructor.php'); 
 parse_form_sanitizer($_GET, $_POST);
 parse_form($_GET, $_POST);
 ##Variables de usuario
