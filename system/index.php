@@ -11,29 +11,15 @@ if($ins['user'] || $ins['pass']){
 		$_SESSION['usu_usuario']=$row['usu_usuario'];
 		$_SESSION['usu_nombre']=$row['usu_usuario'];
 		$_SESSION['usu_nivel']=$row['id_acceso'];
-		header("location: tmp/index.php");
+		header("location: modules/index.php");
 	}
 }
-#############
-## Vista
-#############
-##Header & Footer
-$menuTpl = 'index_menu.tpl';
-$headerTpl = 'index_header.tpl';
-$footerTpl = 'index_footer.tpl';
-include($PathTPL.'index_head_tpl.php');
-##Content
-$header->set("Menu", "");
-$content = new Template($PathTPL.'index_login.tpl');
-$content->set("FORM_ACTION_LOGIN", $PHP_SELF);
-$content->set("FOOTER", $footer->output());
-$content->set("MENSAJE", $Msj);
-##Index [framset]
-$html = new Template($PathTPL.'index_frame.tpl');
-$html->set("TITULO", "Sistema");
-$html->set("HEADER", $header->output());
-$html->set("CONTENT", $content->output());
-$html=$html->output();
-echo $html;
+$contentVars = array('FORM_ACTION_LOGIN'=>$PHP_SELF, 'MENSAJE'=>$Msj );
+?>
+
+<?php
+## Inicio - Generar HTML ##
+echo HTMLconstructor(false,$contentHTML, $contentVars, 'index_login.tpl');
+## Fin - Generar HTML ##
 ?>
 <a href="modules/">Testing</a>

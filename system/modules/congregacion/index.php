@@ -1,6 +1,11 @@
 <?php session_name('maha_tlalpan'); session_start(); include($_SESSION['RaizLoc']."common/header.php"); ?>
 <?php 
 $contentHTML = "Congregación";
-#include($PathTPL.'HTMLconstructor.php');
-echo HTMLconstructor($contentHTML);
+$contentVars = array('TEST'=>'Prueba de parse variable');
+?>
+
+<?php
+## Inicio - Generar HTML ##
+echo HTMLconstructor(true,$contentHTML,$contentVars);
+## Fin - Generar HTML ##
 ?>

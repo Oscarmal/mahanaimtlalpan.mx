@@ -1,5 +1,13 @@
-<?php #require($PathTPL.'HTMLconstructor.php'); 
-function HTMLconstructor($contentHTML='', $menuIzqTpl='index_menuizq.tpl'){
+<?php #require($PathTPL.'HTMLconstructor.php');
+/**
+* @author Oscar Maldonado - O3M
+* @params $menuTop =>  Define si se usarla la barra de menu superior (true/false)
+* @params $contentHTML => Contenido de la pagina
+* @params $contentVars => Variables adicionales dentro de la plantilla TPL
+* @params $contentTPL => Nombre de la plantilla TPL para el contenido
+* @params $menuIzqTpl => Nombre de la plantilla TPL para el menu izquierdo
+*/ 
+function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $contentTPL='index_content.tpl', $menuIzqTpl='index_menuizq.tpl'){
 #############
 ## Vista
 #############
@@ -29,18 +37,24 @@ function HTMLconstructor($contentHTML='', $menuIzqTpl='index_menuizq.tpl'){
 	$header->set("FechaHoy", fec_larga_hoy());
 	$header->set("UsuarioNom", $UsuarioNom);
 	$header->set("UsuarioUsu", $UsuarioUsu);
-	$header->set("Menu", $menu->output());
+	if($menuTop){$header->set("Menu", $menu->output());}else{$header->set("Menu", '');}
 	#Footer
 	$footer = new Template($PathTPL.$footerTpl);
 	$footer->set("Anio", date('Y'));
 	##Content
-	#$menuIzqTpl = 'index_menuizq.tpl';
-	$contentTpl = 'index_content.tpl';
+	$contentTpl = $contentTPL;
 	$menuizq = new Template($PathTPL.$menuIzqTpl);
 	$content = new Template($PathTPL.$contentTpl);
 	$content->set("MenuIzq", $menuizq->output());
 	$content->set("Contenido", $contentHTML);
-	$content->set("FOOTER", $footer->output());
+	$content->set("FOOTER", $footer->output());		
+	if($contentVars){
+	/*Busca variables adicionales dentro del la plantilla TPL*/
+		$tvars = count($contentVars);
+		$vnames = array_keys($contentVars);
+		$vvalues = array_values($contentVars);
+		for($i=0;$i<$tvars;$i++){$content->set($vnames[$i], $vvalues[$i]);}
+	}
 	##Output
 	$htmlTpl = 'index_frame.tpl';
 	$html = new Template($PathTPL.$htmlTpl);
@@ -48,7 +62,6 @@ function HTMLconstructor($contentHTML='', $menuIzqTpl='index_menuizq.tpl'){
 	$html->set("HEADER", $header->output());
 	$html->set("CONTENT", $content->output());
 	$html=$html->output();
-	#echo $html;
 	####### Fin de Impresión ##########
 	return $html;
 }
