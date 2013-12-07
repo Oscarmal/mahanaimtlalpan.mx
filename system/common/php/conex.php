@@ -66,6 +66,9 @@ function SQLQuery($Sql='',$Table=0){
 			}else{$Result = 0;}
 			mysql_free_result($Con); 
 			mysql_close($Link);
+		}
+		elseif(substr($vSql[0],0,1)=='_'){
+			$Result = "Query debug: ".$Sql.";";
 		}else{$Result = "Error: Wrong SQL instruction";}
 	}else{$Result = "Error: Empty sel-query";}
 	return $Result;

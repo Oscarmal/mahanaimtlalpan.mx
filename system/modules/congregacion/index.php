@@ -1,4 +1,4 @@
-<?php session_name('maha_tlalpan'); session_start(); include($_SESSION['RaizLoc']."common/header.php"); ?>
+<?php session_name('maha_tlalpan'); session_start(); include($_SESSION['header_path']); ?>
 <?php 
 $contentHTML = "Congregación";
 $contentVars = array('TEST'=>'Prueba de parse variable');

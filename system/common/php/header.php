@@ -9,6 +9,7 @@ load_vars($cfgFile);
 require($Raiz['local'].$cfg['dbi_conex']); 
 require($Raiz['local'].$cfg['php_functions']); 
 include($Raiz['local'].$cfg['php_template']);
+$Path['header']=$Raiz['local'].$cfg['php_header'];
 $Path['php'] = $Raiz['local'].$cfg['path_php'];
 $Path['tpl'] = $Raiz['local'].$cfg['path_tpl'];
 $Path['css'] = $Raiz['url'].$cfg['path_css'];
@@ -20,15 +21,18 @@ $BreadcrumbsImg=$Path['img'].$cfg['img_breadcrumbs'];
 require_once($Path['php'].'HTMLconstructor.php'); 
 parse_form_sanitizer($_GET, $_POST);
 parse_form($_GET, $_POST);
+##Validación de autentificación
+if(!$login && !$_SESSION['usu_id']) { 
+	session_name('maha_tlalpan');
+	session_start();
+	session_destroy();
+	header("Location: ".$RaizUrl."index.php?er=2"); }
 ##Variables de usuario
 $Usuario['id'] = $_SESSION['usu_id'];
 $Usuario['user'] = $_SESSION['usu_usuario'];
 $Usuario['name'] = $_SESSION['usu_nombre'];
 $Usuario['group'] = $_SESSION['usu_nivel'];
-
-##Validación de autentificación
-#if (!isset($UsuarioID)) { header("Location: ".$RaizUrl."index.php?er=1"); exit; }
-if(empty($UsuarioUs) && empty($UsuarioNom)){$UsuarioUs="Usuario"; $UsuarioNom="Nombre de Usuario";}
+if(empty($Usuario['user']) && empty($Usuario['name'])){$UsuarioUs="Usuario"; $UsuarioNom="Nombre de Usuario";}
 /*
 #Log Txt
 LogTxt($SiteFolder,$UsuarioID,$UsuarioNom,$UsuarioUs,$UsuarioNiv,$RaizLoc);

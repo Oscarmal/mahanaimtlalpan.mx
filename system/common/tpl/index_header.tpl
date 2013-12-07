@@ -6,7 +6,7 @@
     <script type="text/javascript" src="[@Javascript]"></script>
     <script type="text/javascript" src="[@jQuery]"></script>
 </head>
-<body>
+<body onload="reloj('reloj')">
     <div id="cabecera">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <td height="19" colspan="2" valign="middle" class="txt_barra">&nbsp;[@UsuarioUsu] | [@UsuarioNom]</td>
-            <td colspan="2" align="right" valign="middle" class="txt_barra">[@FechaHoy]&nbsp;</td>
+            <td colspan="2" align="right" valign="middle" class="txt_barra">[@FechaHoy]&nbsp;[<span id="reloj" onload="reloj('reloj')"></span>]&nbsp;</td>
           </tr>
           <tr>
             <td height="0"></td>

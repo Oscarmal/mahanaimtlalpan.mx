@@ -21,10 +21,12 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	#Menu general
 	$menu = new Template($Path['tpl'].$menuTpl);
 	$menu->set("MENU", $Path['css']."menu/");
+	$menu->set("JS", $Path['js']);
+	$menu->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
 	$menu->set("INICIO", $Raiz['url']."modules/");
 	$menu->set("CONGREGACION", $Raiz['url']."modules/congregacion/");
-	$menu->set("INVENTARIO", "#");
-	$menu->set("CONTABILIDAD", "#");
+	$menu->set("INVENTARIO", $Raiz['url']."modules/inventario/");
+	$menu->set("CONTABILIDAD", $Raiz['url']."modules/contabilidad/");
 	$menu->set("ADMIN", $Raiz['url']."modules/admin/");
 	$menu->set("SALIR", $Raiz['url']."?er=1");
 	#Header
@@ -38,7 +40,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$header->set("FechaHoy", fec_larga_hoy());
 	$header->set("UsuarioNom", $Usuario['name']);
 	$header->set("UsuarioUsu", $Usuario['user']);
-	$header->set("AppTitle", $AppTitle);
+	$header->set("AppTitle", utf8_encode($AppTitle));
 	if($menuTop){$header->set("Menu", $menu->output());}else{$header->set("Menu", '');}
 	#Footer
 	$footer = new Template($Path['tpl'].$footerTpl);
@@ -49,8 +51,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$content = new Template($Path['tpl'].$contentTpl);
 	$content->set("BarraRuta", breadcrumbs(':: Inicio', $BreadcrumbsImg));
 	if(!$menuIzqTpl){$content->set("MenuIzq", '');}else{$content->set("MenuIzq", $menuizq->output());}
-	#$content->set("MenuIzq", $menuizq->output());
-	$content->set("Contenido", $contentHTML);
+	$content->set("Contenido", utf8_encode($contentHTML));
 	$content->set("FOOTER", $footer->output());		
 	if($contentVars){
 	/*Busca variables adicionales dentro del la plantilla TPL*/

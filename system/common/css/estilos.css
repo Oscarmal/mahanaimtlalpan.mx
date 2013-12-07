@@ -66,14 +66,17 @@ body{
 	border: 1px solid #FF9933;
 }
 #contenido-login{
+	background:#FFF;
 	position:relative;
-	height:98%;
-	min-height:680px;
+	height:50%;
+	min-height:680px;	
 	width:99%;
-	margin: 0 1% 1% 1%;
-	clear: both;
+	min-width:20px;
+	margin: 0 0 5px 3px;
+	float: left;
 	overflow:hidden;		
 	z-index:2;
+	border: 1px solid #FF9933;
 }
 #login{
 	position:relative;

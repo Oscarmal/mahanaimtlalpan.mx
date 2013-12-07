@@ -1,6 +1,6 @@
 <?php session_name('maha_tlalpan'); session_start(); include($_SESSION['header_path']);?>
 <?php 
-$contentHTML = "Admin Module";
+$contentHTML = "Contabilidad";
 ?>
 
 <?php
