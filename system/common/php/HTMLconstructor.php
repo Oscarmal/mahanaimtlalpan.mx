@@ -4,11 +4,12 @@
 * @params $menuTop =>  Define si se usarla la barra de menu superior (true/false)
 * @params $contentHTML => Contenido de la pagina
 * @params $contentVars => Variables adicionales dentro de la plantilla TPL
-* @params $contentTPL => Nombre de la plantilla TPL para el contenido
+* @params $contentTPL => Nombre de la plantilla TPL para el area de contenido
 * @params $menuIzqTpl => Nombre de la plantilla TPL para el menu izquierdo
+* @params $containerTPL => Nombre de la plantilla TPL para el contenedor general
 */ 
-function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $contentTPL='index_content.tpl', $menuIzqTpl='index_menuizq.tpl'){
-	$contentTPL=(!$contentTPL)?'index_content.tpl':$contentTPL;	
+function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $contentTPL='index_content.tpl', $menuIzqTpl='index_menuizq.tpl', $containerTPL='index_container.tpl'){
+	$containerTPL=(!$containerTPL)?'index_container.tpl':$containerTPL;	
 #############
 ## Vista
 #############
@@ -36,6 +37,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$header->set("Javascript_IMG", $Path['js']."img.js");
 	$header->set("Javascript", $Path['js']."o3m_funciones.js");
 	$header->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
+	$header->set("jQuery_DataPicker", $Path['js']."jquery/jquery.ui.datepicker-es.js");
 	$header->set("IMG", $Path['img']);
 	$header->set("FechaHoy", fec_larga_hoy());
 	$header->set("UsuarioNom", $Usuario['name']);
@@ -45,14 +47,10 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	#Footer
 	$footer = new Template($Path['tpl'].$footerTpl);
 	$footer->set("Anio", date('Y'));
+	
 	##Content
-	$contentTpl = $contentTPL;
-	$menuizq = new Template($Path['tpl'].$menuIzqTpl);
-	$content = new Template($Path['tpl'].$contentTpl);
-	$content->set("BarraRuta", breadcrumbs(':: Inicio', $BreadcrumbsImg));
-	if(!$menuIzqTpl){$content->set("MenuIzq", '');}else{$content->set("MenuIzq", $menuizq->output());}
+	$content = new Template($Path['tpl'].$contentTPL);
 	$content->set("Contenido", utf8_encode($contentHTML));
-	$content->set("FOOTER", $footer->output());		
 	if($contentVars){
 	/*Busca variables adicionales dentro del la plantilla TPL*/
 		$tvars = count($contentVars);
@@ -60,12 +58,38 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 		$vvalues = array_values($contentVars);
 		for($i=0;$i<$tvars;$i++){$content->set($vnames[$i], $vvalues[$i]);}
 	}
+
+	##Left Menu
+	$menuizq = new Template($Path['tpl'].$menuIzqTpl);	
+
+	##Container	
+	$container = new Template($Path['tpl'].$containerTPL);
+	$container->set("CSS_estructura", $Path['css']."contenido.css");
+	$container->set("CSS_estilos", $Path['css']."estilos.css");
+	$container->set("Javascript_IMG", $Path['js']."img.js");
+	$container->set("Javascript", $Path['js']."o3m_funciones.js");
+	$container->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
+	$container->set("jQuery_DataPicker", $Path['js']."jquery/jquery.ui.datepicker-es.js");
+	$container->set("IMG", $Path['img']);
+	$container->set("BarraRuta", breadcrumbs(':: Inicio', $BreadcrumbsImg));
+	if(!$menuIzqTpl){$container->set("MenuIzq", '');}else{$container->set("MenuIzq", $menuizq->output());}
+	$container->set("FORM_ACTION", $_SERVER['PHP_SELF']);
+	$container->set("CONTENT", $content->output());
+	$container->set("FOOTER", $footer->output());	
+	if($contentVars){
+	/*Busca variables adicionales dentro del la plantilla TPL*/
+		$tvars = count($contentVars);
+		$vnames = array_keys($contentVars);
+		$vvalues = array_values($contentVars);
+		for($i=0;$i<$tvars;$i++){$container->set($vnames[$i], $vvalues[$i]);}
+	}
+	
 	##Output
 	$htmlTpl = 'index_frame.tpl';
 	$html = new Template($Path['tpl'].$htmlTpl);
 	$html->set("TITULO", $SiteTitle);
 	$html->set("HEADER", $header->output());
-	$html->set("CONTENT", $content->output());
+	$html->set("CONTAINER", $container->output());
 	$html=$html->output();
 	####### Fin de Impresión ##########
 	return $html;

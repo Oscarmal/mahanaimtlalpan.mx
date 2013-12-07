@@ -1,5 +1,9 @@
 <html>
 <head>
+    <meta name="description" content="MahanaimTlalpan.mx">
+    <meta name="keywords" content="Mahanaim Tlalpan, Palabra Miel, Mahanaim">
+    <meta name="author" content="Oscar Maldonado [O3M]">
+    <meta charset="UTF-8">
     <link href="[@CSS_estructura]" rel="stylesheet" type="text/css" />
     <link href="[@CSS_estilos]" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="[@Javascript_IMG]"></script>
@@ -22,8 +26,8 @@
           <td colspan="4" style="border-bottom:#FFCC66 solid 5px;"></td>
           </tr>
           <tr>
-            <td height="19" colspan="2" valign="middle" class="txt_barra">&nbsp;[@UsuarioUsu] | [@UsuarioNom]</td>
-            <td colspan="2" align="right" valign="middle" class="txt_barra">[@FechaHoy]&nbsp;[<span id="reloj" onload="reloj('reloj')"></span>]&nbsp;</td>
+            <td height="19" colspan="2" valign="left" class="txt_usuario">&nbsp;[@UsuarioUsu] | [@UsuarioNom]</td>
+            <td colspan="2" align="right" valign="middle" class="txt_fecha">[@FechaHoy]&nbsp;[<span id="reloj" onload="reloj('reloj')"></span>]&nbsp;</td>
           </tr>
           <tr>
             <td height="0"></td>

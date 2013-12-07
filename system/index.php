@@ -25,7 +25,7 @@ $contentVars = array('FORM_ACTION_LOGIN'=>$_SERVER['PHP_SELF'], 'MENSAJE'=>$Msj 
 
 <?php
 ## Inicio - Generar HTML ##
-echo HTMLconstructor(false,$contentHTML, $contentVars, 'index_login.tpl');
+echo HTMLconstructor(false,$contentHTML, $contentVars, 'index_login.tpl', false, 'index_login.tpl');
 ## Fin - Generar HTML ##
 ?>
 <!-- <a href="modules/">Testing</a> -->

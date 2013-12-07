@@ -6,6 +6,6 @@ $contentVars = array('TEST'=>'[Prueba de variable nueva]');
 
 <?php
 ## Inicio - Generar HTML ##
-echo HTMLconstructor(true,$contentHTML,$contentVars,'index_content.tpl','index_menuizq.tpl');
+echo HTMLconstructor(true,$contentHTML,$contentVars,'index_content.tpl','index_container.tpl','index_menuizq.tpl');
 ## Fin - Generar HTML ##
 ?>

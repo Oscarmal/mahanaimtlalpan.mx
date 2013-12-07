@@ -10,7 +10,7 @@
 <body>
 	<frameset rows="80,*">
 	    <frame name="header" src="[@HEADER]">
-	    <frame name="content" src="[@CONTENT]"> 
+	    <frame name="container" src="[@CONTAINER]"> 
 	</frameset>
 </body>
 </html>
