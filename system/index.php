@@ -11,7 +11,7 @@ if($ins['user'] || $ins['pass']){
 		$_SESSION['usu_usuario']=$row['usu_usuario'];
 		$_SESSION['usu_nombre']=$row['usu_usuario'];
 		$_SESSION['usu_nivel']=$row['id_acceso'];
-		header("location: modules/index.php");
+		header("location: modules/");
 	}
 }
 $contentVars = array('FORM_ACTION_LOGIN'=>$PHP_SELF, 'MENSAJE'=>$Msj );

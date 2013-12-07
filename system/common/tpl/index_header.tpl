@@ -15,7 +15,7 @@
             <span class="titulo1">Iglesia de Jesucristo Mahanaim Tlalpan</span><span class="titulo2">&nbsp;    <br />
             Ministerios Palabra Miel&nbsp;<br />
             </span><span class="titulo3"><br />
-            Sistema de Control Administrativo</span><span class="titulo2">&nbsp;</span></td>
+            [@AppTitle]</span><span class="titulo2">&nbsp;</span></td>
           <td width="67" align="right" valign="top" ><img src="[@IMG]PalabraMiel_azul_low.jpg" style="max-width=66; max-height=70;"/></td>
           </tr>
           <tr>

@@ -164,6 +164,8 @@ function borrar_archivos($prefijo, $dir, $extension, $segundos)
     closedir($h);
 }
 
+
+function Plantilla_RTF($Plantilla,$Ruta,$NuevoDoc,$Variables,$CharAbre,$CharCierra,$Valores,$SqlQry,$ConexDataSql){
 /* Función para generar RTF
 	$Plantilla  =	Ruta y nombre de archivo RTF que sera la plantilla	=>  /carpeta/archivo.rtf
 	$Ruta		=	Ruta en donde se generará el archivo nuevo			=>  /carpeta/nuevos/
@@ -182,7 +184,6 @@ function borrar_archivos($prefijo, $dir, $extension, $segundos)
 	
 	Resuldado	:	Genera el archivo RTF con los parametros ingresados y devuelve la ruta del mismo.
 */
-function Plantilla_RTF($Plantilla,$Ruta,$NuevoDoc,$Variables,$CharAbre,$CharCierra,$Valores,$SqlQry,$ConexDataSql){
 	$NuevoDoc=$Ruta.$NuevoDoc;
 	$txtplantilla=file_get_contents($Plantilla);
 	$matriz=explode("sectd",$txtplantilla);
@@ -219,9 +220,9 @@ function Plantilla_RTF($Plantilla,$Ruta,$NuevoDoc,$Variables,$CharAbre,$CharCier
 	return $NuevoDoc;
 }
 
+function LogTxt($nom, $u, $n, $g, $ub, $r){
 # Función para crear archivo log .txt con movimientos dentro del sistema
 # acceso(nombre_archivo, usuario ID, usuario_nombre, usuario, nivel, ruta)
-function LogTxt($nom, $u, $n, $g, $ub, $r){
 $fec = date("Y_m_d");
 if($_SERVER["HTTP_X_FORWARDED_FOR"])
 {
@@ -252,5 +253,30 @@ fclose($fp);
 return ;
 }
 
+function breadcrumbs($home = 'Inicio', $separator = '>') {
+## Crea la barra de navegación para el usuario
+## @params $home String, $separatos String (puede ser un caracter o la ruta de una imagen)
+	global $Raiz;
+	$home=(!$Raiz['sitefolder']?ucwords($home):ucwords($Raiz['sitefolder']));
+	#$path = array_filter(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+	$rootPath = explode($Raiz['sitefolder'].'/', $_SERVER['REQUEST_URI']);
+	$path = array_filter(explode('/', $rootPath[1]));
+	$base = $Raiz['url'];
+	$breadcrumbs = array(':: <a rel="nofollow" href="'. $base .'">'. $home .'</a>');	
+	$last = end(array_keys($path));	 
+	foreach ($path as $x => $crumb) {
+		$base.=$crumb.'/';
+		$title = ucwords(str_replace(array('.php', '_', '-'), array('', ' ', ' '), $crumb));	 
+		if ($x != $last) {
+			$breadcrumbs[] = '<a rel="nofollow" href="'. $base .'">'. $title .'</a>';
+		} else {
+			$breadcrumbs[] = $title;
+		}
+	}
+	if(strlen($separator)>3){
+		$separator="&nbsp;<img src='$separator' border='0' align='middle'>&nbsp;";
+	}
+	return implode($separator, $breadcrumbs);
+}
 /*O3M*/
 ?>

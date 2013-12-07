@@ -4,7 +4,7 @@ $sql=SQLQuery("select * from cat_areas",1);
 #$contentHTML = "Inicio [@TEST]<br/>".$sql;
 #$contentVars = array('TEST'=>'[Prueba de variable nueva]');
 $contentHTML = '<table width="100%" border="0" cellpadding="0" cellspacing="0">  <tr>
-    <td width="274" rowspan="5" valign="top"><img src="'.$PathIMG.'palabra_miel_274x300.png" width="274" height="300" /></td>
+    <td width="274" rowspan="5" valign="top"><img src="'.$Path['img'].'palabra_miel_274x300.png" width="274" height="300" /></td>
     <td width="454" height="87">&nbsp;</td>
   </tr>
   <tr>

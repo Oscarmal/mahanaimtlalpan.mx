@@ -1,4 +1,4 @@
-<?php #require($PathTPL.'HTMLconstructor.php');
+<?php #require($Path['tpl'].'HTMLconstructor.php');
 /**
 * @author Oscar Maldonado - O3M
 * @params $menuTop =>  Define si se usarla la barra de menu superior (true/false)
@@ -12,41 +12,42 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 #############
 ## Vista
 #############
-	global $PathPHP, $PathTPL, $PathCSS, $PathJS, $PathIMG, $RaizUrl, $UsuarioNom, $UsuarioUsu, $SiteTitle;
+	global  $Raiz,$Path,$Usuario,$AppTitle,$BreadcrumbsImg;
 	####### Impresión de Página #######
 	##Header & Footer
 	$menuTpl = 'index_menu.tpl';
 	$headerTpl = 'index_header.tpl';
 	$footerTpl = 'index_footer.tpl';
 	#Menu general
-	$menu = new Template($PathTPL.$menuTpl);
-	$menu->set("MENU", $PathCSS."menu/");
-	$menu->set("INICIO", $RaizUrl."modules/");
-	$menu->set("CONGREGACION", $RaizUrl."modules/congregacion/");
+	$menu = new Template($Path['tpl'].$menuTpl);
+	$menu->set("MENU", $Path['css']."menu/");
+	$menu->set("INICIO", $Raiz['url']."modules/");
+	$menu->set("CONGREGACION", $Raiz['url']."modules/congregacion/");
 	$menu->set("INVENTARIO", "#");
 	$menu->set("CONTABILIDAD", "#");
-	$menu->set("ADMIN", $RaizUrl."modules/admin/");
-	$menu->set("SALIR", $RaizUrl."?er=1");
+	$menu->set("ADMIN", $Raiz['url']."modules/admin/");
+	$menu->set("SALIR", $Raiz['url']."?er=1");
 	#Header
-	$header = new Template($PathTPL.$headerTpl);
-	$header->set("CSS_estructura", $PathCSS."contenido.css");
-	$header->set("CSS_estilos", $PathCSS."estilos.css");
-	$header->set("Javascript_IMG", $PathJS."img.js");
-	$header->set("Javascript", $PathJS."o3m_funciones.js");
-	$header->set("jQuery", $PathJS."jquery/jquery-1.9.1.min.js");
-	$header->set("IMG", $PathIMG);
+	$header = new Template($Path['tpl'].$headerTpl);
+	$header->set("CSS_estructura", $Path['css']."contenido.css");
+	$header->set("CSS_estilos", $Path['css']."estilos.css");
+	$header->set("Javascript_IMG", $Path['js']."img.js");
+	$header->set("Javascript", $Path['js']."o3m_funciones.js");
+	$header->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
+	$header->set("IMG", $Path['img']);
 	$header->set("FechaHoy", fec_larga_hoy());
-	$header->set("UsuarioNom", $UsuarioNom);
-	$header->set("UsuarioUsu", $UsuarioUsu);
+	$header->set("UsuarioNom", $Usuario['name']);
+	$header->set("UsuarioUsu", $Usuario['user']);
+	$header->set("AppTitle", $AppTitle);
 	if($menuTop){$header->set("Menu", $menu->output());}else{$header->set("Menu", '');}
 	#Footer
-	$footer = new Template($PathTPL.$footerTpl);
+	$footer = new Template($Path['tpl'].$footerTpl);
 	$footer->set("Anio", date('Y'));
 	##Content
 	$contentTpl = $contentTPL;
-	$menuizq = new Template($PathTPL.$menuIzqTpl);
-	$content = new Template($PathTPL.$contentTpl);
-	$content->set("IMG", $PathIMG);
+	$menuizq = new Template($Path['tpl'].$menuIzqTpl);
+	$content = new Template($Path['tpl'].$contentTpl);
+	$content->set("BarraRuta", breadcrumbs(':: Inicio', $BreadcrumbsImg));
 	if(!$menuIzqTpl){$content->set("MenuIzq", '');}else{$content->set("MenuIzq", $menuizq->output());}
 	#$content->set("MenuIzq", $menuizq->output());
 	$content->set("Contenido", $contentHTML);
@@ -60,7 +61,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	}
 	##Output
 	$htmlTpl = 'index_frame.tpl';
-	$html = new Template($PathTPL.$htmlTpl);
+	$html = new Template($Path['tpl'].$htmlTpl);
 	$html->set("TITULO", $SiteTitle);
 	$html->set("HEADER", $header->output());
 	$html->set("CONTENT", $content->output());
