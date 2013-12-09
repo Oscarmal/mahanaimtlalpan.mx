@@ -9,7 +9,7 @@
     <link href="[@CSS_estilos]" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="[@Javascript_IMG]"></script>
     <script type="text/javascript" src="[@Javascript]"></script>
-    <script type="text/javascript" src="[@jQuery]"></script>
+    [@jQueryPlugIns]
 </head>
 <body>
     <div id="pagina">

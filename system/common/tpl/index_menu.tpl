@@ -1,8 +1,5 @@
 <link href="[@MENU]menu.css" rel="stylesheet" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Cuprum&amp;subset=latin' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="[@JS]jquery/jquery.confirm/jquery.confirm.css" />
-<script src="[@jQuery]"></script>
-<script src="[@JS]jquery/jquery.confirm/jquery.confirm.js"></script>
+[@jQueryPlugIns]
 <div class="container">
     <ul id="nav">
         <li><a href="[@INICIO]">Inicio</a></li>

@@ -8,9 +8,9 @@
     <link href="[@CSS_estilos]" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="[@Javascript_IMG]"></script>
     <script type="text/javascript" src="[@Javascript]"></script>
-    <script type="text/javascript" src="[@jQuery]"></script>
+    [@jQueryPlugIns]
 </head>
-<body onload="reloj('reloj')">
+<body onLoad="reloj('reloj')">
     <div id="cabecera">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>

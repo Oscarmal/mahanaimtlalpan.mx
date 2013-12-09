@@ -14,6 +14,21 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 ## Vista
 #############
 	global  $Raiz,$Path,$Usuario,$AppTitle,$BreadcrumbsImg;
+	#### Plugins ####
+	$jQueryPlugins = '
+				<!--jQuery-->
+				<script type="text/javascript" src="'.$Path['js'].'jquery/jquery-1.9.1.min.js"></script>
+				<!--jQuery UI-->
+				<link href="'.$Path['js'].'jquery/jquery-ui-1.10.3.custom/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+			   <script type="text/javascript" src="'.$Path['js'].'jquery/jquery-ui-1.10.3.custom/jquery-ui-1.10.3.custom.min.js"></script>
+			   <!--jQuery Datepicker ES-->
+			   <script src="'.$Path['js'].'jquery/jquery-ui-1.10.3.custom/jquery.ui.datepicker-es.js"></script>
+				<!--jQuery Confirm Popups-->
+				<link href="http://fonts.googleapis.com/css?family=Cuprum&amp;subset=latin" rel="stylesheet" type="text/css">
+				<link rel="stylesheet" type="text/css" href="'.$Path['js'].'jquery/jquery.confirm/jquery.confirm.css" />
+				<script src="'.$Path['js'].'jquery/jquery.confirm/jquery.confirm.js"></script>';
+	
+	####---
 	####### Impresión de Página #######
 	##Header & Footer
 	$menuTpl = 'index_menu.tpl';
@@ -23,7 +38,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$menu = new Template($Path['tpl'].$menuTpl);
 	$menu->set("MENU", $Path['css']."menu/");
 	$menu->set("JS", $Path['js']);
-	$menu->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
+	$menu->set("jQueryPlugIns", $jQueryPlugins);
 	$menu->set("INICIO", $Raiz['url']."modules/");
 	$menu->set("CONGREGACION", $Raiz['url']."modules/congregacion/");
 	$menu->set("INVENTARIO", $Raiz['url']."modules/inventario/");
@@ -36,8 +51,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$header->set("CSS_estilos", $Path['css']."estilos.css");
 	$header->set("Javascript_IMG", $Path['js']."img.js");
 	$header->set("Javascript", $Path['js']."o3m_funciones.js");
-	$header->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
-	$header->set("jQuery_DataPicker", $Path['js']."jquery/jquery.ui.datepicker-es.js");
+	$header->set("jQueryPlugIns", $jQueryPlugins);	
 	$header->set("IMG", $Path['img']);
 	$header->set("FechaHoy", fec_larga_hoy());
 	$header->set("UsuarioNom", $Usuario['name']);
@@ -68,8 +82,7 @@ function HTMLconstructor($menuTop=true, $contentHTML='', $contentVars=false, $co
 	$container->set("CSS_estilos", $Path['css']."estilos.css");
 	$container->set("Javascript_IMG", $Path['js']."img.js");
 	$container->set("Javascript", $Path['js']."o3m_funciones.js");
-	$container->set("jQuery", $Path['js']."jquery/jquery-1.9.1.min.js");
-	$container->set("jQuery_DataPicker", $Path['js']."jquery/jquery.ui.datepicker-es.js");
+	$container->set("jQueryPlugIns", $jQueryPlugins);	
 	$container->set("IMG", $Path['img']);
 	$container->set("BarraRuta", breadcrumbs(':: Inicio', $BreadcrumbsImg));
 	if(!$menuIzqTpl){$container->set("MenuIzq", '');}else{$container->set("MenuIzq", $menuizq->output());}
